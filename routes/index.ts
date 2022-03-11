@@ -1,10 +1,10 @@
 const routes = {
   home: {
-    value: '/'
+    value: "/",
   },
   history: {
-    value: '/history'
+    value: "/history",
   },
-}
+};
 
-export default routes
+export default routes;

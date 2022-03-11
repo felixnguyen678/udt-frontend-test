@@ -1,18 +1,18 @@
-import { useContext, createContext } from 'react'
+import { useContext, createContext } from "react";
 import DataStore from "./dataStore";
 
 export class RootStore {
-  dataStore: DataStore
+  dataStore: DataStore;
 
   constructor() {
-    this.dataStore = new DataStore(this)
+    this.dataStore = new DataStore(this);
   }
 }
 
-export const rootStore = new RootStore()
+export const rootStore = new RootStore();
 
-const storeContext = createContext(rootStore)
+const storeContext = createContext(rootStore);
 
 export const useStores = () => {
-  return useContext(storeContext)
-}
+  return useContext(storeContext);
+};
