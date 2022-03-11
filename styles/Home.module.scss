@@ -1,0 +1,16 @@
+$primary-color: #2c2c28;
+
+.c-calculator {
+  //position: absolute;
+  //top: 0;
+  //bottom: 0;
+  //right: 0;
+  //left: 0;
+  width: 500px;
+  height: 600px;
+  background-color: $primary-color;
+  margin: auto;
+  margin-top: 160px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
