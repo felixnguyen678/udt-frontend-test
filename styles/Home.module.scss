@@ -1,16 +1,72 @@
-$primary-color: #2c2c28;
+$primaryColor: #564e4e;
+$numberButtonColor: #8d8888;
+$editButtonColor: #696161;
+$operatorButtonColor: #ff9900;
+$fontColor: white;
+$calculatorWidth: 450px;
+$calculatorHeight: 640px;
+$buttonPressedColor: #707070;
+
+$buttonHeight: $calculatorHeight / 7;
+
+
+
+@mixin buttonStyle {
+  width: 25%;
+  height: $buttonHeight;
+  background-color: $numberButtonColor;
+  font-size: 40px;
+  color: $fontColor;
+  border: 1px $primaryColor solid;
+  &:active {
+    background-color: $buttonPressedColor;
+  }
+}
 
 .c-calculator {
-  //position: absolute;
-  //top: 0;
-  //bottom: 0;
-  //right: 0;
-  //left: 0;
-  width: 500px;
-  height: 600px;
-  background-color: $primary-color;
+  overflow: hidden;
+  width: $calculatorWidth;
+  height: $calculatorHeight;
+  background-color: $primaryColor;
   margin: auto;
   margin-top: 160px;
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgb(0 0 0 / 30%) 0 19px 38px, rgb(0 0 0 / 22%) 0 15px 12px;
+
+  &__screen {
+    background-color: $primaryColor;
+    height: 2 * $buttonHeight;
+    padding-right: 40px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+
+
+    .c-screen__number {
+      font-size: 100px;
+      margin: 0;
+      color: $fontColor;
+      font-family: "Helvetica Neue";
+    }
+  }
+  &__keypad {
+    display: flex;
+    flex-wrap: wrap;
+    .c-calculator__button {
+      @include buttonStyle;
+      &--large {
+        @include buttonStyle;
+        width: 50%;
+      }
+      &--secondary {
+        @include buttonStyle;
+        background-color: $operatorButtonColor;
+      }
+      &--third {
+        @include buttonStyle;
+        background-color: $editButtonColor;
+      }
+    }
+
+  }
 }
