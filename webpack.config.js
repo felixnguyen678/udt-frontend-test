@@ -1,13 +1,20 @@
-const prod = process.env.NODE_ENV === 'production';
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const prod = process.env.NODE_ENV === 'production';
+const port = 8080
 
 module.exports = {
     mode: prod ? 'production' : 'development',
     entry: './src/index.tsx',
     output: {
         path: __dirname + '/dist/',
+        filename: 'script/bundle.js',
+        publicPath: `http://localhost:${port}/`,
+    },
+    devServer: {
+        port,
+        liveReload: true
     },
     module: {
         rules: [
@@ -25,11 +32,12 @@ module.exports = {
             },
         ]
     },
-    devtool: prod ? undefined : 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin(
+            {filename: 'style/bundle.css',}
+        ),
     ],
 };

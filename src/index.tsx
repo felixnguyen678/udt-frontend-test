@@ -6,8 +6,9 @@ import 'core-js/features/promise'
 import 'core-js/features/set'
 import 'raf/polyfill'
 import 'whatwg-fetch'
+import {App} from "./App";
 
 ReactDOM.render(
-  <h1>Hello React!</h1>,
+  <App />,
   document.getElementById('app-root'),
 )
