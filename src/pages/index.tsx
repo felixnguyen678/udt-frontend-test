@@ -1,39 +1,48 @@
 import React from "react";
+import {Provider} from 'mobx-react';
+import {rootStore} from './../stores';
+import {NumberButton} from './../components/Buttons'
+import { observer } from 'mobx-react-lite'
+import { useStores } from './../stores'
+
 // import {hot} from "react-hot-loader";
 // import "../styles/Home.module.css"
 const ReactDOMServer = require("react-dom/server");
 
 const Home = () => {
+  const {dataStore} = useStores();
   return (
-    <div className="c-calculator">
-      <div className="c-calculator__screen">
-        <span className="c-screen__number">0</span>
+    <Provider {...rootStore}>
+      <div className="c-calculator">
+        <div className="c-calculator__screen">
+          <span className="c-screen__number">{dataStore.expression}</span>
+        </div>
+        <div className="c-calculator__keypad">
+          <button className="c-calculator__button--third">AC</button>
+          <button className="c-calculator__button--third">+/-</button>
+          <button className="c-calculator__button--third">%</button>
+          <button className="c-calculator__button--secondary">/</button>
+          <NumberButton num={7}/>
+          <NumberButton num={8}/>
+          <NumberButton num={9}/>
+          <button className="c-calculator__button--secondary">*</button>
+          <NumberButton num={4}/>
+          <NumberButton num={5}/>
+          <NumberButton num={6}/>
+          <button className="c-calculator__button--secondary">-</button>
+          <NumberButton num={1}/>
+          <NumberButton num={2}/>
+          <NumberButton num={3}/>
+          <button className="c-calculator__button--secondary">+</button>
+          <NumberButton num={0}/>
+          <button className="c-calculator__button">,</button>
+          <button className="c-calculator__button--secondary">=</button>
+        </div>
       </div>
-      <div className="c-calculator__keypad">
-        <button className="c-calculator__button--third">AC</button>
-        <button className="c-calculator__button--third">+/-</button>
-        <button className="c-calculator__button--third">%</button>
-        <button className="c-calculator__button--secondary">/</button>
-        <button className="c-calculator__button">7</button>
-        <button className="c-calculator__button">8</button>
-        <button className="c-calculator__button">9</button>
-        <button className="c-calculator__button--secondary">*</button>
-        <button className="c-calculator__button">4</button>
-        <button className="c-calculator__button">5</button>
-        <button className="c-calculator__button">6</button>
-        <button className="c-calculator__button--secondary">-</button>
-        <button className="c-calculator__button">1</button>
-        <button className="c-calculator__button">2</button>
-        <button className="c-calculator__button">3</button>
-        <button className="c-calculator__button--secondary">+</button>
-        <button className="c-calculator__button--large">0</button>
-        <button className="c-calculator__button">,</button>
-        <button className="c-calculator__button--secondary">=</button>
-      </div>
-    </div>
+    </Provider>
   );
 };
 
 const HomeHTML: string = ReactDOMServer.renderToString(<Home />);
 
-export { Home, HomeHTML };
+export default observer(Home);
