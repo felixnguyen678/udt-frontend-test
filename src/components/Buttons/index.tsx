@@ -1,3 +1,8 @@
 import NumberButton from './NumberButton'
-
-export {NumberButton}
+import OperatorButton from './OperatorButton'
+import CalculateButton from './CalculateButton'
+export {
+  NumberButton,
+  OperatorButton,
+  CalculateButton
+}

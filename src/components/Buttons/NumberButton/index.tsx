@@ -1,20 +1,20 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite'
 import { useStores } from '../../../stores'
+import { concatNumbers} from '../../../utils/common'
 
 export interface INumberButtonProps {
-  num: number
+  num: number;
 }
 
-function Index({num} : INumberButtonProps) {
+const NumberButton = ({num} : INumberButtonProps) => {
   const {dataStore} = useStores();
 
   return (
     <button className="c-calculator__button" onClick={() => {
-      dataStore.setExpression(dataStore.expression + num)
-      console.log(dataStore.expression);
+      dataStore.setCurrentArgument(concatNumbers(dataStore.currentArgument, num));
     }}>{num}</button>
   )
 }
 
-export default observer(Index);
+export default observer(NumberButton);

@@ -4,21 +4,24 @@ import { useStores } from '../../../stores'
 import { concatNumbers} from '../../../utils/common'
 import {EOperator} from '../../../constants/enums'
 
-export interface IOperatorButtonProps {
-  operator: EOperator;
+export interface ICalculateButtonProps {
   children: React.ReactNode;
 }
 
 
-const OperatorButton = (props: IOperatorButtonProps) => {
+const CalculateButton = (props: ICalculateButtonProps) => {
   const {dataStore} = useStores();
 
   return (
     <button className="c-calculator__button--secondary" onClick={() => {
-      dataStore.setRestOfExpression(dataStore.restOfExpression + dataStore.currentArgument + props.operator);
-      dataStore.setCurrentArgument(0);
+      const expression = dataStore.restOfExpression + dataStore.currentArgument
+      const result = dataStore.restOfExpression;
+      console.log(result);
+      dataStore.setRestOfExpression(result);
+      dataStore.setCurrentArgument(Number(result));
+
     }}>{props.children}</button>
   )
 }
 
-export default observer(OperatorButton);
+export default observer(CalculateButton);

@@ -1,9 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 import {RootStore} from "./index";
+import {trimNumber} from "./../utils/common"
 
 class DataStore {
   rootStore: RootStore;
-  expression: string = '0'
+  restOfExpression: string = ''
   currentArgument: number = 0;
 
   constructor(rootStore: RootStore) {
@@ -11,17 +12,17 @@ class DataStore {
     makeAutoObservable(this);
   }
 
-  setExpression(expression: string): void {
-    this.expression = expression;
+  setRestOfExpression(restOfExpression: string): void {
+    this.restOfExpression = restOfExpression;
   }
 
   setCurrentArgument(argument: number): void {
-    this.currentArgument = argument;
+    this.currentArgument = trimNumber(argument);
   }
 
 
   clearAllData(): void {
-    this.expression = '0';
+    this.restOfExpression = '';
     this.currentArgument = 0;
   }
 
